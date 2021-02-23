@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IQueryable<Book>
+
+<div class="text-center">
+    <h1 class="display-4">Prof. Hilton's Top Reads</h1>
+    <br />
+</div>
+
+<!--display each entry in database/ seed data-->
+<div class="twocolumns">
+    @foreach (var x in Model)
+    {
+        <div>
+            <h4>@x.Title</h4>
+            <!--display complete author name even though stored seperately-->
+            <p>Author: @x.AuthorFirst @x.AuthorMiddle @x.AuthorLast</p>
+            <p>Publisher: @x.Publisher</p>
+            <p>ISBN: @x.ISBN</p>
+            <p>Classification: @x.Classification</p>
+            <p>Category: @x.Category</p>
+            <p>Price: $@x.Price</p>
+        </div>
+    }
+</div>
