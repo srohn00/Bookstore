@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+//add in viewmodels
+using Bookstore.Models.ViewModels;
 
 namespace Bookstore.Controllers
 {
@@ -17,7 +19,7 @@ namespace Bookstore.Controllers
         private IBookstoreRepository _repository;
 
         //items per page variable
-        public int ItemsPerPage = 5;
+        public int PageSize = 5;
         public HomeController(ILogger<HomeController> logger, IBookstoreRepository repository)
         {
             _logger = logger;
@@ -29,11 +31,20 @@ namespace Bookstore.Controllers
             if (ModelState.IsValid)
             {
                 //return #items per page with linq 
-                return View(_repository.Books
-                    .OrderBy(p=>p.BookID)
-                    .Skip((page-1) * ItemsPerPage)
-                    .Take(ItemsPerPage)
-                    );
+                return View(new BookListViewModel
+                {
+                    Books = _repository.Books
+                            .OrderBy(p => p.BookID)
+                            .Skip((page - 1) * PageSize)
+                            .Take(PageSize)
+                        ,
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = PageSize,
+                        TotalNumItems = _repository.Books.Count()
+                    }
+                });
             }
             else
             {
