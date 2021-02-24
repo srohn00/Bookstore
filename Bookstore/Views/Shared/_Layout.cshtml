@@ -31,13 +31,15 @@
             </div>
         </nav>
     </header>
-    <!--bring in body from views-->
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="row m-1 p-1" >
+        <div class="col-4">
+            <h1>Shelby's Book Nook</h1>
+        </div>
+        <!--bring in body from views-->
+        <div class="col-8">
             @RenderBody()
-        </main>
+        </div>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - Bookstore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
