@@ -40,5 +40,7 @@ namespace Bookstore.Models
         // req field
         [Required]
         public decimal Price { get; set; }
+        [Required]
+        public int Pages { get; set; }
     }
 }
