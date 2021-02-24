@@ -59,7 +59,7 @@ namespace Bookstore
             {
                 endpoints.MapControllerRoute(
                     "pagination",
-                    "Books/{page}",
+                    "P{page}",
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();
