@@ -15,17 +15,25 @@ namespace Bookstore.Controllers
 
         //added
         private IBookstoreRepository _repository;
+
+        //items per page variable
+        public int ItemsPerPage = 5;
         public HomeController(ILogger<HomeController> logger, IBookstoreRepository repository)
         {
             _logger = logger;
             _repository = repository;
         }
-
-        public IActionResult Index()
+                                //pass page 1 as default page to display
+        public IActionResult Index(int page=1)
         {
             if (ModelState.IsValid)
             {
-                return View(_repository.Books);
+                //return #items per page with linq 
+                return View(_repository.Books
+                    .OrderBy(p=>p.BookID)
+                    .Skip((page-1) * ItemsPerPage)
+                    .Take(ItemsPerPage)
+                    );
             }
             else
             {
