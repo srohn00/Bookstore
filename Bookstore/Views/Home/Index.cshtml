@@ -9,19 +9,59 @@
 </div>
 -->
 
-<!--display each entry in database/ seed data-->
+    
+<!--cool bootstrap photo carousel-->
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/fahrenheit451.png" />
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/lesmiserables.jpg" />
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/teamofrivals.jpg" />
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/thesnowball.jpg" />
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+
+
+<!--display each entry in database/ seed data ALSO highlight the number of pages AND change title cbackground color-->
 <div>
     @foreach (var x in Model.Books)
     {
         <div class="card card-outline-primary m-2 p-2">
-            <h4>@x.Title</h4>
+            <h4 class="bg-primary">@x.Title</h4>
             <!--display complete author name even though stored seperately-->
             <p>Author: @x.AuthorFirst @x.AuthorMiddle @x.AuthorLast</p>
             <p>Publisher: @x.Publisher</p>
             <p>ISBN: @x.ISBN</p>
             <p>Classification: @x.Classification</p>
             <p>Category: @x.Category</p>
-            <p>Pages: @x.Pages</p>
+            <p><mark>Pages: @x.Pages</mark></p>
             <span class="badge badge-info" style="float:left">
                 Price: $@x.Price
             </span>
@@ -29,8 +69,9 @@
         </div>
     }
 </div>
-<!--add in bottom page nav menu-->
-<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
+<!--add in bottom page nav menu && styling-->
+<div page-model="@Model.PagingInfo" page-action="Index"
+     page-classes-enabled="true" page-class="btn"
      page-class-normal="btn-outline-dark"
      page-class-selected="btn-primary"
      class="btn-group pull-right m-1"></div>
