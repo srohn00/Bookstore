@@ -26,7 +26,7 @@ namespace Bookstore.Controllers
             _repository = repository;
         }
                                 //pass page 1 as default page to display
-        public IActionResult Index(int page=1)
+        public IActionResult Index(string category, int page=1)
         {
             if (ModelState.IsValid)
             {
@@ -34,6 +34,8 @@ namespace Bookstore.Controllers
                 return View(new BookListViewModel
                 {
                     Books = _repository.Books
+                            //filter
+                            .Where(p => category == null || p.Category == category)
                             .OrderBy(p => p.BookID)
                             .Skip((page - 1) * PageSize)
                             .Take(PageSize)
@@ -42,8 +44,10 @@ namespace Bookstore.Controllers
                     {
                         CurrentPage = page,
                         ItemsPerPage = PageSize,
-                        TotalNumItems = _repository.Books.Count()
-                    }
+                        TotalNumItems = category == null ? _repository.Books.Count() :
+                            _repository.Books.Where(x => x.Category == category).Count()
+                        }, 
+                    CurrentCategory = category
                 });
             }
             else

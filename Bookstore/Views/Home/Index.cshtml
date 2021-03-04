@@ -53,20 +53,7 @@
 <div>
     @foreach (var x in Model.Books)
     {
-        <div class="card card-outline-primary m-2 p-2">
-            <h4 class="bg-primary">@x.Title</h4>
-            <!--display complete author name even though stored seperately-->
-            <p>Author: @x.AuthorFirst @x.AuthorMiddle @x.AuthorLast</p>
-            <p class="well well-sm">Publisher: @x.Publisher</p>
-            <p>ISBN: @x.ISBN</p>
-            <p>Classification: @x.Classification</p>
-            <p>Category: @x.Category</p>
-            <p><mark>Pages: @x.Pages</mark></p>
-            <span class="badge badge-info" style="float:left">
-                Price: $@x.Price
-            </span>
-
-        </div>
+        <partial name="BookSummary" model="x" />
     }
 </div>
 <!--add in bottom page nav menu && styling-->
@@ -74,4 +61,6 @@
      page-classes-enabled="true" page-class="btn"
      page-class-normal="btn-outline-dark"
      page-class-selected="btn-primary"
-     class="btn-group pull-right m-1"></div>
+     page-url-category="@Model.CurrentCategory"
+     class="btn-group pull-right m-1">
+</div>

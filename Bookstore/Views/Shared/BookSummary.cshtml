@@ -1,0 +1,14 @@
+﻿@model Book
+<div class="card card-outline-primary m-2 p-2">
+    <h4 class="bg-primary">@Model.Title</h4>
+    <!--display complete author name even though stored seperately-->
+    <p>Author: @Model.AuthorFirst @Model.AuthorMiddle @Model.AuthorLast</p>
+    <p class="well well-sm">Publisher: @Model.Publisher</p>
+    <p>ISBN: @Model.ISBN</p>
+    <p>Classification: @Model.Classification</p>
+    <p>Category: @Model.Category</p>
+    <p><mark>Pages: @Model.Pages</mark></p>
+    <span class="badge badge-info" style="float:left">
+        Price: $@Model.Price
+    </span>
+</div>
