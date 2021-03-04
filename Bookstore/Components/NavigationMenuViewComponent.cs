@@ -20,9 +20,9 @@ namespace Bookstore.Components
             ViewBag.SelectedCategory = RouteData?.Values["category"];
             
             return View(repository.Books
-                .Select(x => x.Category)
+                .Select(p => p.Category)
                 .Distinct()
-                .OrderBy(x => x));
+                .OrderBy(p => p));
         }
     }
 }

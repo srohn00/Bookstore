@@ -45,7 +45,7 @@ namespace Bookstore.Controllers
                         CurrentPage = page,
                         ItemsPerPage = PageSize,
                         TotalNumItems = category == null ? _repository.Books.Count() :
-                            _repository.Books.Where(x => x.Category == category).Count()
+                            _repository.Books.Where(p => p.Category == category).Count()
                         }, 
                     CurrentCategory = category
                 });

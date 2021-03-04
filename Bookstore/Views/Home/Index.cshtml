@@ -51,9 +51,9 @@
 
 <!--display each entry in database/ seed data ALSO highlight the number of pages AND change title cbackground color-->
 <div>
-    @foreach (var x in Model.Books)
+    @foreach (var p in Model.Books)
     {
-        <partial name="BookSummary" model="x" />
+        <partial name="BookSummary" model="p" />
     }
 </div>
 <!--add in bottom page nav menu && styling-->
