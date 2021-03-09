@@ -32,7 +32,10 @@ namespace Bookstore
                 //options.UseSqlServer(Configuration["ConnectionStrings:BookstoreConnection"]));
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
-        
+            //assignment 8
+            services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +53,9 @@ namespace Bookstore
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //assignment 8
+            app.UseSession();
 
             app.UseRouting();
 
@@ -76,6 +82,8 @@ namespace Bookstore
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();
+                //assignment 8
+                endpoints.MapRazorPages();
             });
 
             SeedData.EnsurePopulated(app);
