@@ -34,8 +34,11 @@ namespace Bookstore.Pages
         {
             Book book = repository.Books.FirstOrDefault(b => b.BookID == bookId);
 
-            Cart = HttpContext.Session.SetJson<Cart>("cart", Cart);
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
 
+            Cart.AddItem(book, 1);
+
+            HttpContext.Session.SetJson("cart", Cart);
             return RedirectToPage(new { returnUrl = returnUrl });
         }
     }
