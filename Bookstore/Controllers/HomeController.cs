@@ -26,7 +26,7 @@ namespace Bookstore.Controllers
             _repository = repository;
         }
                                 //pass page 1 as default page to display
-        public IActionResult Index(string category, int page=1)
+        public IActionResult Index(string category, int pageNum=1)
         {
             if (ModelState.IsValid)
             {
@@ -37,12 +37,12 @@ namespace Bookstore.Controllers
                             //filter
                             .Where(p => category == null || p.Category == category)
                             .OrderBy(p => p.BookID)
-                            .Skip((page - 1) * PageSize)
+                            .Skip((pageNum - 1) * PageSize)
                             .Take(PageSize)
                         ,
                     PagingInfo = new PagingInfo
                     {
-                        CurrentPage = page,
+                        CurrentPage = pageNum,
                         ItemsPerPage = PageSize,
                         TotalNumItems = category == null ? _repository.Books.Count() :
                             _repository.Books.Where(p => p.Category == category).Count()

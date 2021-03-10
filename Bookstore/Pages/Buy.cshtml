@@ -11,11 +11,20 @@
             <th>Quantity</th>
             <th>Price</th>
             <th>Subtotal</th>
-            <th>Total</th>
+            <!--<th>Total</th>-->
         </tr>
     </thead>
     <tbody>
-        @foreach () ;
+        @foreach (var line in Model.Cart.Lines)
+        {
+        <tr>
+            <td>@line.Book.Title</td>
+            <td>@line.Quantity</td>
+            <td>@line.Book.Price</td>
+            <td>@(line.Quantity * line.Book.Price).ToString</td>
+            <!--insert delete button here-->
+        </tr>
+        }
     </tbody>
 </table>
 
