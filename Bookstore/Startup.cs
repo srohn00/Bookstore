@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,14 +21,15 @@ namespace Bookstore
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; set; }
+        //public IConfiguration Configuration { get; set; }
+        private IConfiguration Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
             services.AddDbContext<BookstoreDbContext>(options =>
-                options.UseSqlite(Configuration["ConnectionStrings:BookstoreConnection"]));
+                { options.UseSqlite(Configuration["ConnectionStrings:BookstoreConnection"]); });
                 //options.UseSqlite(Configuration.GetConnectionString("BookstoreConnection")));
                 //options.UseSqlServer(Configuration["ConnectionStrings:BookstoreConnection"]));
 
@@ -36,6 +38,8 @@ namespace Bookstore
             services.AddRazorPages();
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,14 +57,12 @@ namespace Bookstore
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            //uhhh book?
+            app.UseStatusCodePages();
             //assignment 8
             app.UseSession();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
             //add new endpoints
@@ -70,7 +72,7 @@ namespace Bookstore
 
                 endpoints.MapControllerRoute("page",
                     "{pageNum:int}",
-                    new { Controller = "Home", action = "Index" });
+                    new { Controller = "Home", action = "Index", pageNum=1 });
 
                 endpoints.MapControllerRoute("category", 
                     "{category}",
@@ -79,7 +81,7 @@ namespace Bookstore
                 endpoints.MapControllerRoute(
                     "pagination",
                     "P{pageNum}",
-                    new { Controller = "Home", action = "Index" });
+                    new { Controller = "Home", action = "Index", pageNum=1 });
 
                 endpoints.MapDefaultControllerRoute();
                 //assignment 8

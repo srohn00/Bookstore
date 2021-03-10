@@ -2,6 +2,7 @@
 @model Bookstore.Pages.BuyModel
 @{
 }
+
 <h2>Your Cart</h2>
 
 <table class="table table-bordered table-striped">
@@ -11,28 +12,28 @@
             <th>Quantity</th>
             <th>Price</th>
             <th>Subtotal</th>
-            <!--<th>Total</th>-->
+            
         </tr>
     </thead>
-    <tbody>
-        @foreach (var line in Model.Cart.Lines)
-        {
+<tbody>
+    @foreach (var line in Model.Cart.Lines)
+    {
         <tr>
             <td class="text-left">@line.Book.Title</td>
             <td class="text-center">@line.Quantity</td>
-            <td class="text-right">@line.Book.Price</td>
+            <td class="text-right">$@line.Book.Price</td>
             <td class="text-right">@((line.Quantity * line.Book.Price).ToString("c"))</td>
-            <!--insert delete button here-->
+            
         </tr>
-        }
-    </tbody>
+    }
+</tbody>
 
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">@Model.Cart.ComputeTotalSum().ToString("c")</td>
-        </tr>
-    </tfoot>
+<tfoot>
+    <tr>
+        <td colspan="3" class="text-right">Total:</td>
+        <td class="text-right">@Model.Cart.ComputeTotalSum().ToString("c")</td>
+    </tr>
+</tfoot>
 </table>
 
 <div class="text-center">

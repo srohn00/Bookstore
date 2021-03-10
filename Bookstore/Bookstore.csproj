@@ -4,9 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="Pages\Buy.cshtml" />
-  </ItemGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
@@ -21,16 +19,6 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Buy.cshtml" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Buy.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Buy.cshtml" />
-  </ItemGroup>
 
 </Project>
