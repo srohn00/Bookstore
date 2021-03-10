@@ -2,4 +2,22 @@
 @model Bookstore.Pages.BuyModel
 @{
 }
-<p>testing, testing, 123</p>
+<h2>Your Cart</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach () ;
+    </tbody>
+</table>
+
+<button type="submit" asp-action="Index">Continue Shopping</button>
+<button type="submit" asp-action="">Clear Cart</button>
