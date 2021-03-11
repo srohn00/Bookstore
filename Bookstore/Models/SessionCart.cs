@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Bookstore.Infrastructure;
 
+//create session to store cart data
 namespace Bookstore.Models
 {
     public class SessionCart : Cart
@@ -20,11 +21,13 @@ namespace Bookstore.Models
         }
         [JsonIgnore]
         public ISession Session { get; set; }
+        //method to add books to cart
         public override void AddItem(Book book, int qty)
         {
             base.AddItem(book, qty);
             Session.SetJson("Cart", this);
         }
+        //method to remove book from cart
         public override void RemoveLine(Book book)
         {
             base.RemoveLine(book);

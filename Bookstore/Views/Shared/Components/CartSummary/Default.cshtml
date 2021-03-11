@@ -1,7 +1,8 @@
 ﻿@model Cart
-<!--^may need to be Buy instead-->
+<!--cart summary in top nav bar-->
 
 <div class="">
+    <!--display # items in cart and total price-->
     @if (Model.Lines.Count() > 0)
     {
         <small class="navbar-text">
@@ -10,9 +11,10 @@
             @Model.ComputeTotalSum().ToString("c")
         </small>
     }
-<a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Buy" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
-    <!--font-awesome shopping cart logo-->
-    <!--<i class="fade fa-shopping-cart"></i>-->
-    Checkout
-</a>
+    <!--link to cart page-->
+    <a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Buy" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+        <!--font-awesome shopping cart logo-->
+        <!--<i class="fade fa-shopping-cart"></i>-->
+        Checkout
+    </a>
 </div>

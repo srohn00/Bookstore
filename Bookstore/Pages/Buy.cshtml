@@ -2,7 +2,9 @@
 @model Bookstore.Pages.BuyModel
 @{
 }
-
+<!--cart page showing each book, quantity, subtotal per book and overall total
+    also includes buttons to remove books from cart and continue shopping
+    -->
 <h2>Your Cart</h2>
 
 <table class="table table-bordered table-striped">
@@ -24,6 +26,7 @@
             <td class="text-right">@line.Book.Price.ToString("c")</td>
             <td class="text-right">@((line.Quantity * line.Book.Price).ToString("c"))</td>
             <td class="text-center">
+                <!--post data to session-->
                 <form asp-page-handler="Remove" method="post">
                     <input type="hidden" name="BookID" value="@line.Book.BookID"/>
                     <input type="hidden" name="returnUrl" value="@Model.ReturnUrl"/>

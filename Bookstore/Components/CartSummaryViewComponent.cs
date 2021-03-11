@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Bookstore.Models;
 
+//get cart summary info
 namespace Bookstore.Components
 {
     public class CartSummaryViewComponent : ViewComponent
