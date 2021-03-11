@@ -8,6 +8,7 @@
     <!--bootstrap-->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <!--insert font-awesome css stylesheet here-->
 </head>
 <body>
     <header>
@@ -21,7 +22,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            
+
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
@@ -29,13 +30,18 @@
                         </li>
                     </ul>
                 </div>
+                <div>
+                    <!--cart summary view component-->
+                    <vc:cart-summary />
+                </div>
             </div>
         </nav>
     </header>
     <div class="row m-1 p-1" >
         <div class="col-4">
             <h1>Shelby's Book Nook</h1>
-            <!--add view component-->
+            
+            <!--add nav menu view component-->
             <vc:navigation-menu />
         </div>
         <!--bring in body from views-->
